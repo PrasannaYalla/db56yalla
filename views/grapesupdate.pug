@@ -1,0 +1,45 @@
+extends layout
+
+block content
+  h1= title
+   if (toShow == null)
+    h2 No instance to Update
+   else
+  - let grapesid = toShow._id 
+  - let grapes_type = toShow.grapes_type 
+  - let Cost = toShow.Cost 
+  - let Weight = toShow.Weight 
+   
+  div.row(class='mb-2') 
+    div.mr-1 ID is 
+    div #{grapesid} 
+  - let actionid = "/resource/grapes/" + grapesid 
+  form(id='grapesForm', action= actionid, method="PUT") 
+    div.form-group 
+        label.grapesAttr(for='grapes_type') grapes type 
+        input#grapes_type(type='text', name='grapes_type', value= grapes_type ) 
+    div.form-group 
+        label.grapesAttr(for='Weight') grapes Weight 
+        input#size(type='number', name='Weight', value= grapesWeight ) 
+    div.form-group 
+        label.grapesAttr(for='cost') grapes cost 
+        input#cost(type='number', name='Cost', value= grapesCost ) 
+    input(type="submit") 
+ 
+  script. 
+    document.forms['grapesForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'PUT', 
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Update succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Update failed " + error ) 
+      }); 
+    }); 

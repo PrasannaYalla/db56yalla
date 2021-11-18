@@ -17,7 +17,7 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var addmodsRouter = require("./routes/addmods");
 var selectorRouter = require("./routes/selector");
-//var Costume = require("./models/grapes");
+//var grapes = require("./models/grapes");
 var resourceRouter = require('./routes/resource');
 var grapes = require("./models/grapes");
 
@@ -83,7 +83,7 @@ app.use("/grapes", grapesRouter);
 app.use("/users", usersRouter);
 app.use("/selector", selectorRouter);
 app.use("/addmods", addmodsRouter);
-//app.use("/costume", costumeRouter);
+//app.use("/grapes", grapesRouter);
 app.use('/resource', resourceRouter);
 
 // catch 404 and forward to error handler
